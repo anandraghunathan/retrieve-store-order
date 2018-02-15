@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @ComponentScan({"com.retrievestoreorder"})
-//@EnableMongoRepositories("com.retrievestoreorder.repository")
 public class RetrieveStoreOrderSpringBootApplication {
     public static void main(String[] args) {
         SpringApplication.run(

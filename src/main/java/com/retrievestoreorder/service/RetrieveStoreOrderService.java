@@ -1,12 +1,13 @@
 package com.retrievestoreorder.service;
 
-import com.retrievestoreorder.bean.StoreOrder;
+import com.retrievestoreorder.entity.StoreOrder;
 
 public interface RetrieveStoreOrderService {
 
     // todo
     // List<StoreOrder> findAll();
 
-    StoreOrder findOrderById(String id);
+    StoreOrder findOrderById(String orderId);
 
+    StoreOrder findOrderByUsername(String username);
 }

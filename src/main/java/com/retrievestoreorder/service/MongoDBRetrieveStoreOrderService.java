@@ -1,10 +1,14 @@
 package com.retrievestoreorder.service;
 
-import com.retrievestoreorder.bean.StoreOrder;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.retrievestoreorder.entity.StoreOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -15,7 +19,7 @@ public class MongoDBRetrieveStoreOrderService implements RetrieveStoreOrderServi
     private static final Logger log = LoggerFactory.getLogger(MongoDBRetrieveStoreOrderService.class);
 
     @Autowired
-    private MongoOperations mongoOperations;
+    private MongoTemplate mongoTemplate;
 
     //private final StoreOrderRepository storeOrderRepository;
 
@@ -32,9 +36,17 @@ public class MongoDBRetrieveStoreOrderService implements RetrieveStoreOrderServi
     }*/
 
     @Override
-    public StoreOrder findOrderById(String id) {
-        Query query = Query.query(Criteria.where("order.id").is(Long.parseLong(id)));
-        StoreOrder storeOrder = mongoOperations.findOne(query,
+    public StoreOrder findOrderById(String orderId) {
+        Query query = Query.query(Criteria.where("orderId").is(Long.parseLong(orderId)));
+        StoreOrder storeOrder = mongoTemplate.findOne(query,
+                StoreOrder.class, "orderdetails");
+        return storeOrder;
+    }
+
+    @Override
+    public StoreOrder findOrderByUsername(String username) {
+        Query query = Query.query(Criteria.where("username").is(username));
+        StoreOrder storeOrder = mongoTemplate.findOne(query,
                 StoreOrder.class, "orderdetails");
         return storeOrder;
     }

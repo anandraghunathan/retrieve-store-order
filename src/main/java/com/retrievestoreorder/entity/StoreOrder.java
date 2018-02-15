@@ -1,39 +1,41 @@
-package com.retrievestoreorder.bean;
+package com.retrievestoreorder.entity;
 
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "orderdetails")
 public class StoreOrder {
 
-    @Id
-    public String id;
-
-    @NotBlank
+    public String orderId;
     public String username;
-
-    public String item;
+    public String product;
     public String count;
     public String cost;
     public String shipTo;
 
     public StoreOrder() {}
 
-    public StoreOrder(String username, String item, String count, String cost, String shipTo){
+    public StoreOrder(String username, String product, String count, String cost, String shipTo){
         this.username = username;
-        this.item = item;
+        this.product = product;
         this.count = count;
         this.cost = cost;
         this.shipTo = shipTo;
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
     }
 
     public String getUsername() {
@@ -42,14 +44,6 @@ public class StoreOrder {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
     }
 
     public String getCount() {
@@ -78,7 +72,7 @@ public class StoreOrder {
 
     @Override
     public String toString() {
-        return String.format("StoreOrder[id='%s', username='%s', item='%s', count='%s', cost='%s', shipTo='%s']",
-                id, username, item, count, cost, shipTo);
+        return String.format("StoreOrder[orderId='%s', username='%s', product='%s', count='%s', cost='%s', shipTo='%s']",
+                orderId, username, product, count, cost, shipTo);
     }
 }
