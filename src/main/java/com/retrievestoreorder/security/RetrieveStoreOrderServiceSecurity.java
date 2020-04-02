@@ -25,7 +25,7 @@ public class RetrieveStoreOrderServiceSecurity extends WebSecurityConfigurerAdap
         auth.inMemoryAuthentication()
                 .withUser("anand").password("anand").roles("ADMIN", "USER")
                 .and()
-                .withUser("ram").password("ram").roles("ADMIN", "USER");
+                .withUser("advait").password("advait").roles("ADMIN", "USER");
     }
 
 }
